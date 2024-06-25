@@ -1,12 +1,14 @@
 from unicourt.api_client import ApiClient
 from unicourt.configuration import Configuration
+from unicourt.api_response import ApiResponse
 
 from unicourt.exceptions import OpenApiException
 from unicourt.exceptions import ApiAttributeError
 from unicourt.exceptions import ApiTypeError
 from unicourt.exceptions import ApiValueError
 from unicourt.exceptions import ApiKeyError
-from unicourt.exceptions import ApiException  
+from unicourt.exceptions import ApiException
+from unicourt.exceptions import SdkException
 
 from unicourt.sdk.CaseUpdate import CaseUpdate
 from unicourt.sdk.LawFirmAnalytics import LawFirmAnalytics
