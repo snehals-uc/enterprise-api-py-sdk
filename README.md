@@ -51,41 +51,57 @@ Execute `pytest` to run the tests.
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
 ```python
-
+import os
 import unicourt
 from unicourt.rest import ApiException
 from pprint import pprint
 
-# Defining the host is optional and defaults to https://enterpriseapi.staging.unicourt.com
-# See configuration.py for a list of all supported configuration parameters.
+# Creating the context using the default configuration to create the instance of the API class
+configuration = unicourt.Configuration()
+api_client = unicourt.ApiClient(configuration)
+
+# AccessTokenRequest | The endpoint accepts your Client ID and Client Secret ID as part of the request.
+payload = {
+    "clientId": os.getenv("CLIENT_ID"),
+    "clientSecret": os.getenv("CLIENT_SECRET")
+}
+
+# Create an instance of the AuthenticationApi class
+auth_instance = unicourt.AuthenticationApi(api_client)
+
+# Generate new access token to accessing All API.
+# Access token generating should be done once.
+# Store the access token for future calls.
+try:
+    auth_response = auth_instance.generate_new_token(access_token_request=payload)
+    print("The response of AuthenticationApi->generate_new_token:\n")
+    pprint(auth_response)
+except Exception as e:
+    print("Exception when calling AuthenticationApi->generate_new_token: %s\n" % e)
+
+# Configure Bearer authorization (JWT): bearerAuth access token
 configuration = unicourt.Configuration(
-    host = "https://enterpriseapi.staging.unicourt.com"
+    access_token = auth_response.access_token
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Updating the context with configuration having the access token which will be used for creating instances of the API class
+api_client = unicourt.ApiClient(configuration)
 
-# Configure Bearer authorization (JWT): bearerAuth
-configuration = unicourt.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
+# Create an instance of the API class
+api_instance = unicourt.AttorneyAnalyticsApi(api_client)
 
 # Enter a context with an instance of the API client
-with unicourt.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = unicourt.AttorneyAnalyticsApi(api_client)
-    norm_attorney_id = 'NATYs4P6kDBkhKL8CF' # str | Norm ID of Attorney.    - minimum: 18   - maximum: 18 
+# Create an instance of the API class
+api_instance = unicourt.AttorneyAnalyticsApi(api_client)
+norm_attorney_id = 'NATYs4P6kDBkhKL8CF' # str | Norm ID of Attorney.    - minimum: 18   - maximum: 18 
 
-    try:
-        # Norm Attorney Details.
-        api_response = api_instance.get_norm_attorney_by_id(norm_attorney_id)
-        print("The response of AttorneyAnalyticsApi->get_norm_attorney_by_id:\n")
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling AttorneyAnalyticsApi->get_norm_attorney_by_id: %s\n" % e)
+try:
+    # Norm Attorney Details.
+    api_response = api_instance.get_norm_attorney_by_id(norm_attorney_id)
+    print("\nThe response of AttorneyAnalyticsApi->get_norm_attorney_by_id:\n")
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AttorneyAnalyticsApi->get_norm_attorney_by_id: %s\n" % e)
 
 ```
 
