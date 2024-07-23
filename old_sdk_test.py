@@ -1,4 +1,5 @@
 import os
+import pickle
 import unicourt
 from unicourt import Authentication, CaseDocket, CaseSearch
 from utility import generate_json_file_from_unicourt_obj, load_unicourt_obj_from_json_file
@@ -13,7 +14,7 @@ try:
     # Execute Case-Search Request
     cases, statuses = CaseSearch.search_cases(q=f'caseName:({business})', order='desc', sort='filedDate', page_number=1)
 
-    case, status = CaseDocket.get_case(cases['case_search_result_array'][0]['case_id'])
+    case, status = CaseDocket.get_case(cases['case_search_result_array'][0]['case_id']) # also supports cases.case_search_result_array[0].case_id
 
     print("The case object:")
     print(case)
