@@ -13,7 +13,7 @@ try:
     # Execute Case-Search Request
     cases, _ = CaseSearch.search_cases(q=f'caseName:({business})', order='desc', sort='filedDate', page_number=1)
 
-    case, status = CaseDocket.get_case(cases.case_search_result_array[0].case_id) # cases['case_search_result_array'][0]['case_id']
+    case, status = CaseDocket.get_case(cases.case_search_result_array[0].case_id) # cases['case_search_result_array'][0]['case_id'] will not be supported
     print("The case object:")
     print(case)
 

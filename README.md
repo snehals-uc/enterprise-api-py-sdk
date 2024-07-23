@@ -16,14 +16,14 @@ In old sdk the importing model was done from ```unicourt.model``` but in new sdk
 ### 3. Return Object
 In old sdk the return object was a ```json``` but in new sdk it is a ```python``` object.
 ### 4. Example code
-In the example file ```old_sdk_test.py``` code at line *17*, old sdk will support both
+In the example file ```old_sdk_test.py``` code at [line *17*](https://github.com/snehals-uc/enterprise-api-py-sdk/blob/test/old_sdk_test.py#L17), old sdk will support both
 ```
 case, status = CaseDocket.get_case(cases['case_search_result_array'][0]['case_id'])
 ```
 ```
 case, status = CaseDocket.get_case(cases.case_search_result_array[0].case_id)
 ```
-But, new sdk will only support
+But, new sdk file ```new_sdk_test.py``` [line *16*](https://github.com/snehals-uc/enterprise-api-py-sdk/blob/test/new_sdk_test.py#L16) will only support
 ```
 case, status = CaseDocket.get_case(cases.case_search_result_array[0].case_id)
 ```
