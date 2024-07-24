@@ -6,6 +6,6 @@ WORKDIR /home/uca_user/unicourt-sdk-test
 RUN pip install unicourt
 
 # For current test sdk (new sdk)
-# RUN pip install --extra-index-url https://test.pypi.org/simple/ unicourt==4.0.3
+# RUN pip install --extra-index-url https://test.pypi.org/simple/ unicourt==4.0.11
 
 COPY . .

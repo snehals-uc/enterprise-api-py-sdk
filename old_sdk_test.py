@@ -36,7 +36,6 @@ except Exception as e:
 # # Invalidate the generated access token
 Authentication.invalidate_token()
 
-# <class 'unicourt.model.case.Case'>
 # Object for the above print is a raw json object
 # {'attorneys': {'attorney_array': [],
 #                'next_page_api': None,
