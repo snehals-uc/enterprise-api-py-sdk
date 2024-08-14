@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "unicourt"
-version = "4.0.31"
+version = "4.0.32"
 description = "UniCourt Enterprise APIs"
 authors = ["OpenAPI Generator Community <team@openapitools.org>"]
 license = "NoLicense"

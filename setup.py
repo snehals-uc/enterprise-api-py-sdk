@@ -25,7 +25,7 @@ def _generate_description():
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 NAME = "unicourt"
-VERSION = "4.0.31"
+VERSION = "4.0.32"
 PYTHON_REQUIRES = ">=3.7"
 REQUIRES = [
     "urllib3 >= 1.25.3, < 2.1.0",
